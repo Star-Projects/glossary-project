@@ -2,7 +2,6 @@ package com.example.glossaryservice.service;
 
 import com.example.glossaryservice.domain.Definition;
 import com.example.glossaryservice.util.feign.DefinitionClient;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
