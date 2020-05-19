@@ -22,10 +22,6 @@ public class ServiceLayer {
     //Get list of definitions by term
     public List<Definition> getDefinitions(String term){
         List<Definition> definitions = definitionClient.getDefinitionsForTerm(term);
-
-        if(definitions.size() == 0){
-            throw new IllegalArgumentException("Sorry there are no definitions for this term.");
-        }
         return definitions;
     }
 
