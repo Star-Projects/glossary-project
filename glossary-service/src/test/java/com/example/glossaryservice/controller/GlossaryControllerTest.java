@@ -1,6 +1,7 @@
 package com.example.glossaryservice.controller;
 
 import com.example.glossaryservice.domain.Definition;
+import com.example.glossaryservice.exception.NotAllowedDefinition;
 import com.example.glossaryservice.service.ServiceLayer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -82,7 +83,7 @@ class GlossaryControllerTest {
         forbiddenDefn.setTerm("bad defn");
         forbiddenDefn.setDefinition("a jerk");
 
-        when(service.addDefinition(forbiddenDefn)).thenThrow(new IllegalArgumentException());
+        when(service.addDefinition(forbiddenDefn)).thenThrow(new NotAllowedDefinition());
     }
 
     // testing GET /glossary/term/{term}
@@ -144,6 +145,6 @@ class GlossaryControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity())
-                .andExpect(content().string(containsString("Not allowed")));
+                .andExpect(content().string(containsString("may not be used")));
     }
 }

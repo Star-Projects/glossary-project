@@ -1,6 +1,7 @@
 package com.example.glossaryservice.service;
 
 import com.example.glossaryservice.domain.Definition;
+import com.example.glossaryservice.exception.NotAllowedDefinition;
 import com.example.glossaryservice.util.feign.DefinitionClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,11 @@ public class ServiceLayer {
     }
 
     //add a definition term and definition
-    public Definition addDefinition(Definition definition) throws IllegalArgumentException {
+    public Definition addDefinition(Definition definition) throws NotAllowedDefinition {
         if (checkIfDefinitionIsClean(definition.getDefinition())) {
             return definitionClient.addDefinition(definition);
         } else {
-            throw new IllegalArgumentException("Not allowed");
+            throw new NotAllowedDefinition();
         }
     }
 
