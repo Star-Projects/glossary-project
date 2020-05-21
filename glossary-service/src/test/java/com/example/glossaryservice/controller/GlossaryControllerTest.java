@@ -7,23 +7,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.cloud.autoconfigure.RefreshAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.runner.RunWith;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -124,18 +119,6 @@ class GlossaryControllerTest {
                 .andExpect(content().json(outputJson));
     }
 
-
-
-//    @Test
-//    public void testAddForbiddenDefinition() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders
-//                .post("/glossary")
-//                .content(mapper.writeValueAsString(FORBIDDEN_DEFINITION_TO_SAVE))
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isUnprocessableEntity())
-//                .andExpect(content().string(containsString(" may not be used")));
-//    }
     @Test
     void shouldReturnUserErrorForForbiddenDefn() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
