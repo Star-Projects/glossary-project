@@ -1,11 +1,21 @@
 package com.example.glossaryservice.domain;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.executable.ValidateOnExecution;
 import java.util.Objects;
+
 
 public class Definition {
 
     private Integer id;
+    //@notBlank - string length must be greater than 1; ""
+    @NotNull(message = "Please enter value for term")
+    @Size(max = 20, min = 1, message = "Term must be between 1 and 20 characters")
     private String term;
+    @NotBlank(message = "Please enter value for term")
+    @Size(max = 20, min = 1, message = "Term must be between 1 and 20 characters")
     private String definition;
 
     public Integer getId() {

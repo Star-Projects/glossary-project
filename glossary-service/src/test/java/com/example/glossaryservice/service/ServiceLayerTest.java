@@ -1,6 +1,7 @@
 package com.example.glossaryservice.service;
 
 import com.example.glossaryservice.domain.Definition;
+import com.example.glossaryservice.exception.NotAllowedDefinition;
 import com.example.glossaryservice.util.feign.DefinitionClient;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -57,7 +58,7 @@ public class ServiceLayerTest {
     @Test
     void prohibitedDefinitionIsRejected(){
         //assert
-        assertThrows(IllegalArgumentException.class, () ->{
+        assertThrows(NotAllowedDefinition.class, () ->{
             //Arrange
             Definition word = new Definition();
             word.setTerm("a term");

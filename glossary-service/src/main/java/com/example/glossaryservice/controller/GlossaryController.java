@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class GlossaryController {
 
     // URL: /glossary/term/{term}
     @RequestMapping(value = "/glossary/term/{term}", method = RequestMethod.GET)
-    public List<Definition> getDefinitionsByTerm(@PathVariable String term) {
+    public List<Definition> getDefinitionsByTerm(@PathVariable @Valid String term) {
         return serviceLayer.getDefinitions(term);
     }
 
@@ -31,7 +32,7 @@ public class GlossaryController {
     // URL: /glossary
     @RequestMapping(value = "/glossary", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Definition addDefinition(@RequestBody Definition defn) {
+    public Definition addDefinition(@RequestBody @Valid Definition defn) {
          return serviceLayer.addDefinition(defn);
     }
 
